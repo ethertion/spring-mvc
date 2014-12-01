@@ -5,12 +5,15 @@
  */
 package com.ethertion.mvc.service;
 
+import com.ethertion.mvc.model.Hello;
+
 /**
  *
  * @author amiguel
  */
 public interface HelloService {
     
-    public String sayHello();
+    public String sayHello(Long id);
+    public String postHello(Hello hello);
     
 }

@@ -5,14 +5,15 @@
  */
 package com.ethertion.mvc.dao;
 
+import com.ethertion.mvc.model.Hello;
 
 /**
  *
  * @author amiguel
  */
 public interface HelloDao {
-    
-    public String getHello();
+        
     public String getHello(Long id);
+    public String postHello(Hello hello) throws Exception;
     
 }

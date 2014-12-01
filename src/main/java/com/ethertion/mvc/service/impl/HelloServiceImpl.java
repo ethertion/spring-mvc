@@ -6,6 +6,7 @@
 package com.ethertion.mvc.service.impl;
 
 import com.ethertion.mvc.dao.HelloDao;
+import com.ethertion.mvc.model.Hello;
 import com.ethertion.mvc.service.HelloService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,20 @@ public class HelloServiceImpl implements HelloService{
     private HelloDao helloDao;
 
     @Override
-    public String sayHello() {
-        String res = helloDao.getHello(1L);
+    public String sayHello(Long id) {
+        String res = helloDao.getHello(id);
+        logger.debug(res);
+        return res;
+    }
+    
+    @Override
+    public String postHello(Hello hello) {
+        String res = null;
+        try{
+            res = helloDao.postHello(hello);
+        }catch(Exception e){
+            logger.error (e);
+        }
         logger.debug(res);
         return res;
     }

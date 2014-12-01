@@ -9,11 +9,11 @@
     <context:component-scan base-package="com.ethertion.mvc" />
     <context:annotation-config />
     
-    <!--context:property-placeholder location="classpath:database.properties"/-->
+    <context:property-placeholder location="classpath:database.properties"/>
     <!--bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:spring.properties</value>
+                <value>classpath:database.properties</value>
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
@@ -56,9 +56,9 @@
  
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://db4free.net:3306/ethertion" />
-        <property name="username" value="amiguel" />
-        <property name="password" value="default" />
+        <property name="url" value="${database.url}" />
+        <property name="username" value="${database.user}" />
+        <property name="password" value="${database.password}" />
     </bean>
      
 </beans>

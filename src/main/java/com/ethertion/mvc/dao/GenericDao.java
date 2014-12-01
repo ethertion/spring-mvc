@@ -5,14 +5,10 @@
  */
 package com.ethertion.mvc.dao;
 
-
 /**
  *
  * @author amiguel
  */
-public interface HelloDao {
-    
-    public String getHello();
-    public String getHello(Long id);
+public interface GenericDao {
     
 }

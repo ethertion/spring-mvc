@@ -19,9 +19,9 @@ public class HelloWorldController {
    
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String hello(ModelMap model) {
-
-        model.addAttribute("msg", "Hello World");
-        helloService.sayHello();
+        
+        String hello = helloService.sayHello();
+        model.addAttribute("msg", hello);
         testService.test();
 
         return "index";

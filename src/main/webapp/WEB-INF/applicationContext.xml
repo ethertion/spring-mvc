@@ -7,7 +7,58 @@
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
  
     <context:component-scan base-package="com.ethertion.mvc" />
+    <context:annotation-config />
     
+    <!--context:property-placeholder location="classpath:database.properties"/-->
+    <!--bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:spring.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean-->
+    
+    <!-- Services -->
     <bean id="testService" class="com.ethertion.mvc.service.impl.TestServiceImpl"/>
+        
+    <!-- DAO's-->
+        
+    <!-- Hibernate config NOT NEEDED!!
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean-->
+ 
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!--property name="mappingResources">
+            <list>
+                <value>com/ethertion/mvc/model/Hello.hbm.xml </value>
+            </list>
+        </property-->
+        <property name="annotatedClasses">
+            <list>
+                <value>com.ethertion.mvc.model.Hello</value>                
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+ 
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+ 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://db4free.net:3306/ethertion" />
+        <property name="username" value="amiguel" />
+        <property name="password" value="default" />
+    </bean>
      
 </beans>

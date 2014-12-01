@@ -25,7 +25,7 @@ public class HelloServiceImpl implements HelloService{
 
     @Override
     public String sayHello() {
-        String res = helloDao.getHello();
+        String res = helloDao.getHello(1L);
         logger.debug(res);
         return res;
     }
